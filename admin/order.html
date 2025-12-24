@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Order</title>
+<link rel="stylesheet" href="/BEMU/styles.css" />
+<style>body{padding:1rem;background:transparent;color:#e6eef6}.order-detail{max-width:900px;margin:0 auto}</style>
+</head><body>
+<div class="order-detail">
+  <h1>Order</h1>
+  <div id="content">Loading...</div>
+</div>
+<script>
+  const params = new URLSearchParams(location.search)
+  const id = params.get('id')
+  const token = params.get('token')
+  async function load(){
+    const res = await fetch('/api/admin/orders/'+id, { headers: { 'Authorization': 'Bearer '+token }})
+    if(!res.ok){ document.getElementById('content').textContent = 'Failed to load'; return }
+    const data = await res.json()
+    const c = document.getElementById('content')
+    c.innerHTML = `<p>#${data.order.id} — ${data.order.email||'guest'} — $${(data.order.total_cents/100).toFixed(2)} — ${data.order.status}</p>`
+    data.items.forEach(i=>{ const d = document.createElement('div'); d.textContent = `${i.name} × ${i.quantity} — $${(i.unit_price_cents/100).toFixed(2)}`; c.appendChild(d) })
+  }
+  load()
+</script>
+</body></html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BEMU Admin</title>
+  <link rel="stylesheet" href="/BEMU/styles.css" />
+  <style>body{padding:1rem;background:transparent;color:#e6eef6}.admin{max-width:1000px;margin:0 auto}.orders{margin-top:1rem}.order{background:rgba(255,255,255,0.02);padding:.75rem;border-radius:8px;margin-bottom:.5rem;display:flex;justify-content:space-between}</style>
+</head>
+<body>
+  <div class="admin">
+    <h1>Orders</h1>
+    <p>Provide your admin token to load orders.</p>
+    <label>Admin token<br/><input id="admin-token" style="width:100%" /></label>
+    <button id="load-orders" class="btn">Load orders</button>
+    <div id="orders" class="orders"></div>
+  </div>
+
+  <script>
+  document.getElementById('load-orders').addEventListener('click', async ()=>{
+    const token = document.getElementById('admin-token').value
+    const res = await fetch('/api/admin/orders', { headers: { 'Authorization': 'Bearer '+token }})
+    if(!res.ok){ alert('Failed to load orders'); return }
+    const data = await res.json()
+    const cont = document.getElementById('orders'); cont.innerHTML = ''
+    data.forEach(o=>{
+      const el = document.createElement('div'); el.className='order'
+      el.innerHTML = `<div>#${o.id} — ${o.email||'guest'} — $${(o.total_cents/100).toFixed(2)}</div><div><a href="/BEMU/admin/order.html?id=${o.id}&token=${token}">View</a></div>`
+      cont.appendChild(el)
+    })
+  })
+  </script>
+</body>
+</html>

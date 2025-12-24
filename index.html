@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BEMU Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">BEMU</div>
+    <div class="actions">
+      <button id="account-btn">Account</button>
+      <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to BEMU</h1>
+      <p>Handpicked items. Small business. Big heart.</p>
+    </section>
+
+    <section id="products" class="products-grid" aria-live="polite">
+      <!-- products rendered here -->
+    </section>
+  </main>
+
+  <aside id="cart-panel" class="cart-panel" hidden>
+    <button id="close-cart">Close</button>
+    <h2>Your Cart</h2>
+    <ul id="cart-items" class="cart-items"></ul>
+    <div class="cart-summary">
+      <div>Total: $<span id="cart-total">0.00</span></div>
+      <button id="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+
+  <div id="checkout-modal" class="modal" hidden>
+    <div class="modal-inner">
+      <h3>Checkout</h3>
+      <form id="checkout-form">
+        <label>Email<br /><input type="email" id="buyer-email" required /></label>
+        <div class="order-summary"></div>
+        <button type="submit" class="btn">Pay with card</button>
+      </form>
+      <button id="close-checkout">Close</button>
+    </div>
+  </div>
+
+
+  <div id="auth-modal" class="modal" hidden>
+    <div class="modal-inner">
+      <h3>Account</h3>
+      <div id="auth-forms">
+        <div id="logged-out">
+          <h4>Login</h4>
+          <label>Email<br/><input id="login-email" type="email"/></label>
+          <label>Password<br/><input id="login-pass" type="password"/></label>
+          <button id="login-btn" class="btn">Login</button>
+          <hr/>
+          <h4>Register</h4>
+          <label>Email<br/><input id="reg-email" type="email"/></label>
+          <label>Password<br/><input id="reg-pass" type="password"/></label>
+          <button id="reg-btn" class="btn">Register</button>
+        </div>
+        <div id="logged-in" hidden>
+          <p id="me-email"></p>
+          <button id="logout-btn" class="btn">Logout</button>
+        </div>
+      </div>
+      <button id="close-auth">Close</button>
+    </div>
+  </div>
+
+  <div id="product-modal" class="modal" hidden>
+    <div class="modal-inner product-modal">
+      <button id="close-product" class="btn small">Close</button>
+      <img id="pm-img" src="" alt="" style="width:100%;border-radius:8px;margin-bottom:.5rem" />
+      <h3 id="pm-name"></h3>
+      <p id="pm-desc"></p>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem"><strong id="pm-price"></strong><button id="pm-add" class="btn">Add to cart</button></div>
+    </div>
+  </div>
+
+  <div id="success-banner" style="position:fixed;left:50%;transform:translateX(-50%);top:1rem;display:none;background:linear-gradient(90deg,#10b981,#06b6d4);color:#042f2e;padding:.75rem 1rem;border-radius:999px;box-shadow:0 6px 20px rgba(2,6,23,.45);z-index:1200"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

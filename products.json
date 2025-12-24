@@ -1,0 +1,5 @@
+[
+  {"id":1,"name":"Nike Air Max (BEMU)","price":129.99,"desc":"Cushioned comfort for everyday wear.","img":"https://source.unsplash.com/800x600/?nike-shoes&sig=1"},
+  {"id":2,"name":"Jordan Retro (BEMU)","price":189.99,"desc":"Iconic style with modern comfort.","img":"https://source.unsplash.com/800x600/?jordan-shoes&sig=2"},
+  {"id":3,"name":"BEMU Street Sneaker","price":79.99,"desc":"Casual, lightweight, and fresh.","img":"https://source.unsplash.com/800x600/?sneakers&sig=3"}
+]

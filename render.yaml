@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: BEMU
+    env: node
+    repo: https://github.com/brysonphifer98-sudo/BEMU.git
+    branch: main
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    plan: free
+    autoDeploy: true
